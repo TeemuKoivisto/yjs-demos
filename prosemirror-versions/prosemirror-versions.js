@@ -1,7 +1,7 @@
 /* eslint-env browser */
 
 import * as Y from 'yjs'
-import { WebsocketProvider } from 'y-websocket'
+import { WebsocketProvider } from './y-websocket'
 import { ySyncPlugin, ySyncPluginKey, yCursorPlugin, yUndoPlugin, undo, redo } from 'y-prosemirror'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
@@ -143,7 +143,7 @@ window.addEventListener('load', () => {
   const permanentUserData = new Y.PermanentUserData(ydoc)
   permanentUserData.setUserMapping(ydoc, ydoc.clientID, user.username)
   ydoc.gc = false
-  const provider = new WebsocketProvider('wss://demos.yjs.dev', 'prosemirror-versions-demo', ydoc)
+  const provider = new WebsocketProvider('ws://localhost:8080', 'prosemirror-versions-demo', ydoc)
   const yXmlFragment = ydoc.get('prosemirror', Y.XmlFragment)
 
   const editor = document.createElement('div')
